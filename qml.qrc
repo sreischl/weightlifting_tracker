@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>UserInterface/main.qml</file>
+        <file>UserInterface/Views/WorkoutListView.qml</file>
+    </qresource>
+</RCC>
