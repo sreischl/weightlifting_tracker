@@ -22,7 +22,8 @@ Window {
     anchors.fill: parent
     anchors.margins: 0
     columns: 2
-    rows:2
+    rows:3
+
 
     ///
     /// Buttons to switch views
@@ -59,22 +60,67 @@ Window {
         ///
         Component{
           id: boxComp
-          Rectangle {
+          ListView {
+            width: 200; height: 250
 
-            width: 300
-            height: 100
-            color: "green"
+//            model: myModel
+            delegate: Text { text: "Animal: " + type + ", " + size }
           }
+
+//          ListView {
+//            id: view
+//            anchors.fill: parent
+//            model: 20
+
+//            highlightFollowsCurrentItem: false    // force discarding default animation
+
+//            delegate: Rectangle {
+//              border.color: "steelblue"
+//              color: Qt.lighter(border.color)
+//              width: ListView.view.width
+//              height: 20
+
+//              Text { anchors.centerIn: parent; z: 2; text: index + 1 }
+
+//              MouseArea {
+//                anchors.fill: parent
+//                onClicked: view.currentIndex = index
+//              }
+//            }
+
+//            highlight: Rectangle {
+//              border.color: "yellow"
+//              border.width: 3
+//              color: "transparent"
+//              height: 20
+//              width: ListView.view.width
+//              y:  view.currentItem.y      // highlighting direct binding to selected item!
+//              z: Infinity
+//            }
+//          }
+//          Rectangle {
+
+//            width: 300
+//            height: 100
+//            color: "green"
+//          }
         }
         Component{
           id: workoutListViewComp
-          Views.WorkoutListView{
+
+          Views.WorkoutLogView{
             id: workoutListView
+            prop_workoutLogListModel: myModel
             anchors.margins: 5
           }
         }
       } // StackView
-
     }
+
+    Button {
+        text: "test"
+        onClicked: _uihelper.btnAddItem()
+    }
+
   }
 }

@@ -1,5 +1,10 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
+
+#include <UIBindings/WorkoutLogViewModel.h>
+#include <uitesthelper.h>
+
 
 int main(int argc, char *argv[])
 {
@@ -9,7 +14,21 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
+
     QQmlApplicationEngine engine;
+
+    WorkoutLogViewModel logViewModel;
+    logViewModel.AddWorkout(Workout(1, QDateTime::currentDateTime(), "note A", QList<Excercise>()));
+    logViewModel.AddWorkout(Workout(1, QDateTime::currentDateTime(), "note b", QList<Excercise>()));
+    logViewModel.AddWorkout(Workout(1, QDateTime::currentDateTime(), "note c", QList<Excercise>()));
+
+    UiTestHelper uihelper(&logViewModel);
+
+    QQmlContext *ctxt = engine.rootContext();
+    ctxt->setContextProperty("myModel", &logViewModel);
+    ctxt->setContextProperty("_uihelper", &uihelper);
+
+
     engine.load(QUrl(QStringLiteral("qrc:/UserInterface/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
@@ -25,6 +44,7 @@ int main(int argc, char *argv[])
     QQmlContext *ctxt = engine.rootContext();
     ctxt->setContextProperty("myModel", QVariant::fromValue(dataList));
     */
+
 
     return app.exec();
 }
