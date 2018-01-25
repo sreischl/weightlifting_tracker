@@ -38,4 +38,6 @@ HEADERS += \
 
 DISTFILES += \
     UserInterface/Views/AddWorkoutView.qml \
-    db/workouts.json
+    db/workouts.json \
+    UserInterface/Views/WorkoutLogView.qml \
+    UserInterface/main.qml
