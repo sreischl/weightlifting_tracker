@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>UserInterface/main.qml</file>
         <file>UserInterface/Views/WorkoutLogView.qml</file>
+        <file>UserInterface/Views/AddWorkoutView.qml</file>
+        <file>db/workouts.json</file>
     </qresource>
 </RCC>

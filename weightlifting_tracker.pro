@@ -14,7 +14,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
     Types/Workout.cpp \
-    UIBindings/WorkoutLogViewModel.cpp
+    UIBindings/WorkoutLogViewModel.cpp \
+    JsonDbParser.cpp
 
 RESOURCES += qml.qrc
 
@@ -32,4 +33,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     Types/Workout.h \
     UIBindings/WorkoutLogViewModel.h \
-    uitesthelper.h
+    uitesthelper.h \
+    JsonDbParser.h
+
+DISTFILES += \
+    UserInterface/Views/AddWorkoutView.qml \
+    db/workouts.json

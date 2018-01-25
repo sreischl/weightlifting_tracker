@@ -1,9 +1,18 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 
 #include <UIBindings/WorkoutLogViewModel.h>
 #include <uitesthelper.h>
+
+#include <JsonDbParser.h>
+
+
+#include <QDebug>
 
 
 int main(int argc, char *argv[])
@@ -44,6 +53,25 @@ int main(int argc, char *argv[])
     QQmlContext *ctxt = engine.rootContext();
     ctxt->setContextProperty("myModel", QVariant::fromValue(dataList));
     */
+
+#if 1
+    QString workouts;
+    QFile file;
+    file.setFileName(":/db/workouts.json");
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    workouts = file.readAll();
+    file.close();
+
+    QJsonDocument jdoc = QJsonDocument::fromJson(workouts.toUtf8());
+
+    QVector<Workout> lstWorkouts;
+    if (JsonDbParser::parseFrom(jdoc, lstWorkouts))
+    {
+
+    }
+
+
+#endif
 
 
     return app.exec();

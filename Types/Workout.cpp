@@ -12,6 +12,14 @@ Workout::Workout(
 {
 }
 
+Workout::Workout()
+  : m_id(),
+    m_date(),
+    m_note(),
+    m_excercises()
+{
+}
+
 Workout::Workout(const Workout& other)
     : Workout(other.m_id, other.m_date, other.m_note, other.m_excercises)
 {

@@ -4,32 +4,36 @@
 #include <QObject>
 #include <QDateTime>
 
-class Excercise
+
+/**
+ * @brief The Set struct
+ *
+ * "50/2/3" -> weight/sets/reps
+ */
+struct Set
 {
 public:
-    explicit Excercise()
-    {}
+    uint32_t weight;
+    uint32_t sets;
+    uint32_t reps;
+};
 
-    Excercise(const Excercise& other)
-    {}
-
-    virtual ~Excercise()
-    {}
+struct Excercise
+{
+public:
+    uint32_t id; // Turnübung
+    QList<Set> sets;
 };
 
 class Workout
 {
-//    Q_OBJECT
-
-//    Q_PROPERTY(QString dateString READ dateString /*WRITE setDateString NOTIFY dateStringChanged*/)
-//    Q_PROPERTY(QString note READ note /*WRITE setNote NOTIFY noteChanged*/)
-
 public:
   explicit Workout(
       const uint32_t m_id,
       const QDateTime& m_date,
       const QString& m_note,
       const QList<Excercise>& m_excercises);
+    Workout();
 
     Workout(const Workout& other);
     Workout& operator =(const Workout& other);
